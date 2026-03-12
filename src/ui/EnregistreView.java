@@ -22,8 +22,8 @@ public class EnregistreView extends javax.swing.JFrame {
     public EnregistreView(RegistreUtilisateur listing) {
         initComponents();
         this.listing = listing;
-         setTitle("Connexion - Services Consulaires");
-        //remplirRegistreUtilisateur();
+        setTitle("Inscription - Services Consulaires");
+       
     }
 
     /**
@@ -213,7 +213,7 @@ public class EnregistreView extends javax.swing.JFrame {
             String nom = txtNom.getText();
             String prenom = txtPrenom.getText();
             String email = txtEmail.getText();
-            String motDePasse = txtMotDePasse.getText();
+            String motDePasse = new String(txtMotDePasse.getPassword());
 
             // Vérifier si les champs sont vides
             if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || motDePasse.isEmpty()) {
