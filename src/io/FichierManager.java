@@ -4,6 +4,10 @@
  */
 package io;
 
+import java.io.*;
+import modele.RegistreUtilisateur;
+import modele.Utilisateur;
+
 /**
  *
  * @author Utilisateur

@@ -4,6 +4,7 @@
  */
 package control;
 
+import io.FichierManager;
 import modele.RegistreUtilisateur;
 import modele.Utilisateur;
 import ui.LoginView;
@@ -39,6 +40,7 @@ public class Main {
         //listing.ajouterUtilisateur(new Utilisateur("Tremblay", "Jean", "jean@mail.com", "1234"));
         //listing.ajouterUtilisateur(new Utilisateur("Dupont", "Marie", "marie@mail.com", "abcd"));
         
+       
         
         /* Create and display the form */
         

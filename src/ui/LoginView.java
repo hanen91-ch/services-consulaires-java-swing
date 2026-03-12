@@ -21,6 +21,7 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView(RegistreUtilisateur listing) {
         this.listing = listing;
         initComponents();
+        setTitle("Connexion - Services Consulaires");
     }
 
     /**
@@ -166,7 +167,7 @@ public class LoginView extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             String email = txtAdresseEmail.getText();
-            String motDePasse = txtMotDePasse.getText();
+            String motDePasse = new String(txtMotDePasse.getPassword());
 
             if (email.isEmpty() || motDePasse.isEmpty()) {
                 javax.swing.JOptionPane.showMessageDialog(this,
@@ -183,6 +184,8 @@ public class LoginView extends javax.swing.JFrame {
                 "Bienvenue " + u.getPrenom() + " " + u.getNom(),
                 "Connexion réussie",
                 javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                new MenuView().setVisible(true);
+                this.dispose();
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this,
                 "Email ou mot de passe incorrect.",
@@ -200,8 +203,8 @@ public class LoginView extends javax.swing.JFrame {
 
     private void txtCompteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCompteMouseClicked
 
-        // tu écris ton code ici
         new EnregistreView(listing).setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_txtCompteMouseClicked
 
