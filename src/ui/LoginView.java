@@ -211,7 +211,7 @@ public class LoginView extends javax.swing.JFrame {
                 "Bienvenue " + u.getPrenom() + " " + u.getNom(),
                 "Connexion réussie",
                 javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                new MenuView().setVisible(true);
+                new MenuView(listing, u).setVisible(true);
                 this.dispose();
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this,
