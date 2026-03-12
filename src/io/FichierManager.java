@@ -9,13 +9,6 @@ package io;
  * @author Utilisateur
  */
 public class FichierManager {
-    // test tp sana
-    
-    //test travail en deux
 
-    //test rana
-    //test hanen 2 
-    //test final
-    // test final mte3i
 
 }
