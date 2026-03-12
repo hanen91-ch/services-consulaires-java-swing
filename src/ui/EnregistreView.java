@@ -238,7 +238,7 @@ public class EnregistreView extends javax.swing.JFrame {
             "Succès",
             javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-            this.dispose();  // ferme la fenetre courante  
+            // this.dispose();  // ferme la fenetre courante  
         
         }   catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(this,

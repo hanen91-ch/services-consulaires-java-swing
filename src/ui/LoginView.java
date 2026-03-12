@@ -203,6 +203,7 @@ public class LoginView extends javax.swing.JFrame {
 
         // tu écris ton code ici
         new EnregistreView(listing).setVisible(true);
+        this.dispose();  // ferme la fenetre courante  
         
     }//GEN-LAST:event_txtCompteMouseClicked
 
