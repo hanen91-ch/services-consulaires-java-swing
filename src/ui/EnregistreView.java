@@ -23,7 +23,7 @@ public class EnregistreView extends javax.swing.JFrame {
         initComponents();
         this.listing = listing;
          setTitle("Connexion - Services Consulaires");
-        remplirRegistreUtilisateur();
+        //remplirRegistreUtilisateur();
     }
 
     /**
