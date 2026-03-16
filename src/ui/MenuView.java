@@ -4,6 +4,7 @@
  */
 package ui;
 
+import io.FichierManager;
 import javax.swing.JPanel;
 import modele.DemandePasseport;
 import modele.DemandeVisa;
@@ -300,201 +301,201 @@ public class MenuView extends javax.swing.JFrame {
         }
         
         // enregistrer le fichier de sauvegarde visa
-        private void sauvegarderRDV() {
-        try {
-            java.io.File dossier = new java.io.File("C:\\temp");
-            if (!dossier.exists()) {
-                dossier.mkdirs();
-            }
-
-            String cheminFichier = "C:\\temp\\demandes_rdv.txt";
-            java.io.FileWriter fw = new java.io.FileWriter(cheminFichier, true);
-            java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
-
-            bw.write("========================================");
-            bw.newLine();
-            bw.write("Type de Service   : " + cmbTypeService.getSelectedItem());
-            bw.newLine();
-            bw.write("--- Informations Personnelles ---");
-            bw.newLine();
-            bw.write("Nom               : " + txtNomRDV.getText());
-            bw.newLine();
-            bw.write("Prénom            : " + txtPrenomRDV.getText());
-            bw.newLine();
-            bw.write("Téléphone         : " + txtTelRDV.getText());
-            bw.newLine();
-            bw.write("Email             : " + txtEmailRDV.getText());
-            bw.newLine();
-            bw.write("--- Détails Rendez-vous ---");
-            bw.newLine();
-            bw.write("Date              : " + cmbJourRDV.getSelectedItem() + " "
-                                           + cmbMoisRDV.getSelectedItem() + " "
-                                           + cmbAnneeRDV.getSelectedItem());
-            bw.newLine();
-            bw.write("Créneau           : " + txtStatutRDV.getText().replace("Confirmé", "").trim());
-            bw.newLine();
-            bw.write("Statut            : Confirmé");
-            bw.newLine();
-            bw.write("========================================");
-            bw.newLine();
-            bw.newLine();
-
-            bw.close();
-            fw.close();
-
-        } catch (java.io.IOException e) {
-            javax.swing.JOptionPane.showMessageDialog(this,
-                "Erreur lors de la sauvegarde : " + e.getMessage(),
-                "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-    }
+//        private void sauvegarderRDV() {
+//        try {
+//            java.io.File dossier = new java.io.File("C:\\temp");
+//            if (!dossier.exists()) {
+//                dossier.mkdirs();
+//            }
+//
+//            String cheminFichier = "C:\\temp\\demandes_rdv.txt";
+//            java.io.FileWriter fw = new java.io.FileWriter(cheminFichier, true);
+//            java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
+//
+//            bw.write("========================================");
+//            bw.newLine();
+//            bw.write("Type de Service   : " + cmbTypeService.getSelectedItem());
+//            bw.newLine();
+//            bw.write("--- Informations Personnelles ---");
+//            bw.newLine();
+//            bw.write("Nom               : " + txtNomRDV.getText());
+//            bw.newLine();
+//            bw.write("Prénom            : " + txtPrenomRDV.getText());
+//            bw.newLine();
+//            bw.write("Téléphone         : " + txtTelRDV.getText());
+//            bw.newLine();
+//            bw.write("Email             : " + txtEmailRDV.getText());
+//            bw.newLine();
+//            bw.write("--- Détails Rendez-vous ---");
+//            bw.newLine();
+//            bw.write("Date              : " + cmbJourRDV.getSelectedItem() + " "
+//                                           + cmbMoisRDV.getSelectedItem() + " "
+//                                           + cmbAnneeRDV.getSelectedItem());
+//            bw.newLine();
+//            bw.write("Créneau           : " + txtStatutRDV.getText().replace("Confirmé", "").trim());
+//            bw.newLine();
+//            bw.write("Statut            : Confirmé");
+//            bw.newLine();
+//            bw.write("========================================");
+//            bw.newLine();
+//            bw.newLine();
+//
+//            bw.close();
+//            fw.close();
+//
+//        } catch (java.io.IOException e) {
+//            javax.swing.JOptionPane.showMessageDialog(this,
+//                "Erreur lors de la sauvegarde : " + e.getMessage(),
+//                "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
         
         
         // enregistrer le fichier de sauvegarde visa
-        private void sauvegarderVisa() {
-            try {
-                // Créer le dossier C:\temp s'il n'existe pas
-                java.io.File dossier = new java.io.File("C:\\temp");
-                if (!dossier.exists()) {
-                    dossier.mkdirs();
-                }
-
-                String cheminFichier = "C:\\temp\\demandes_visa.txt";
-                java.io.FileWriter fw = new java.io.FileWriter(cheminFichier, true);
-                java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
-
-                bw.write("========================================");
-                bw.newLine();
-                bw.write("Type de Visa      : " + cmbTypeVisa1.getSelectedItem());
-                bw.newLine();
-                bw.write("--- Informations Personnelles ---");
-                bw.newLine();
-                bw.write("Nom               : " + txtNom1.getText());
-                bw.newLine();
-                bw.write("Prénom            : " + txtPrenom1.getText());
-                bw.newLine();
-                bw.write("N° Passeport      : " + txtPasseport1.getText());
-                bw.newLine();
-                bw.write("Date de Naissance : " + cmbJourNaissance.getSelectedItem() + "/"
-                                                + cmbMoisNaissance.getSelectedItem() + "/"
-                                                + cmbAnneeNaissance.getSelectedItem());
-                bw.newLine();
-                bw.write("Adresse           : " + txtAdresse1.getText());
-                bw.newLine();
-                bw.write("Nationalité       : " + cmbNationnalite1.getSelectedItem());
-                bw.newLine();
-                bw.write("--- Informations Visa ---");
-                bw.newLine();
-                bw.write("Date Début        : " + cmbJourDebut.getSelectedItem() + "/"
-                                                + cmbMoisDebut.getSelectedItem() + "/"
-                                                + cmbAnneeDebut.getSelectedItem());
-                bw.newLine();
-                bw.write("Date Fin          : " + cmbJourFin.getSelectedItem() + "/"
-                                                + cmbMoisFin.getSelectedItem() + "/"
-                                                + cmbAnneeFin.getSelectedItem());
-                bw.newLine();
-                bw.write("Date Délivrance   : " + txtDateDelivrance.getText());
-                bw.newLine();
-                bw.write("Motif de Voyage   : " + txtMotif.getText());
-                bw.newLine();
-                bw.write("--- Documents Fournis ---");
-                bw.newLine();
-                bw.write("Copie Passeport   : " + (chkPasseport.isSelected() ? "Oui" : "Non"));
-                bw.newLine();
-                bw.write("Photo Identité    : " + (chkPhoto.isSelected() ? "Oui" : "Non"));
-                bw.newLine();
-                bw.write("Hébergement       : " + (chkHebergement.isSelected() ? "Oui" : "Non"));
-                bw.newLine();
-                bw.write("Billet Avion      : " + (chkBillet.isSelected() ? "Oui" : "Non"));
-                bw.newLine();
-                bw.write("Statut            : " + txtStatut1.getText());
-                bw.newLine();
-                bw.write("========================================");
-                bw.newLine();
-                bw.newLine();
-
-                bw.close();
-                fw.close();
-
-            } catch (java.io.IOException e) {
-                javax.swing.JOptionPane.showMessageDialog(this,
-                    "Erreur lors de la sauvegarde : " + e.getMessage(),
-                    "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
-        }    
+//        private void sauvegarderVisa() {
+//            try {
+//                // Créer le dossier C:\temp s'il n'existe pas
+//                java.io.File dossier = new java.io.File("C:\\temp");
+//                if (!dossier.exists()) {
+//                    dossier.mkdirs();
+//                }
+//
+//                String cheminFichier = "C:\\temp\\demandes_visa.txt";
+//                java.io.FileWriter fw = new java.io.FileWriter(cheminFichier, true);
+//                java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
+//
+//                bw.write("========================================");
+//                bw.newLine();
+//                bw.write("Type de Visa      : " + cmbTypeVisa1.getSelectedItem());
+//                bw.newLine();
+//                bw.write("--- Informations Personnelles ---");
+//                bw.newLine();
+//                bw.write("Nom               : " + txtNom1.getText());
+//                bw.newLine();
+//                bw.write("Prénom            : " + txtPrenom1.getText());
+//                bw.newLine();
+//                bw.write("N° Passeport      : " + txtPasseport1.getText());
+//                bw.newLine();
+//                bw.write("Date de Naissance : " + cmbJourNaissance.getSelectedItem() + "/"
+//                                                + cmbMoisNaissance.getSelectedItem() + "/"
+//                                                + cmbAnneeNaissance.getSelectedItem());
+//                bw.newLine();
+//                bw.write("Adresse           : " + txtAdresse1.getText());
+//                bw.newLine();
+//                bw.write("Nationalité       : " + cmbNationnalite1.getSelectedItem());
+//                bw.newLine();
+//                bw.write("--- Informations Visa ---");
+//                bw.newLine();
+//                bw.write("Date Début        : " + cmbJourDebut.getSelectedItem() + "/"
+//                                                + cmbMoisDebut.getSelectedItem() + "/"
+//                                                + cmbAnneeDebut.getSelectedItem());
+//                bw.newLine();
+//                bw.write("Date Fin          : " + cmbJourFin.getSelectedItem() + "/"
+//                                                + cmbMoisFin.getSelectedItem() + "/"
+//                                                + cmbAnneeFin.getSelectedItem());
+//                bw.newLine();
+//                bw.write("Date Délivrance   : " + txtDateDelivrance.getText());
+//                bw.newLine();
+//                bw.write("Motif de Voyage   : " + txtMotif.getText());
+//                bw.newLine();
+//                bw.write("--- Documents Fournis ---");
+//                bw.newLine();
+//                bw.write("Copie Passeport   : " + (chkPasseport.isSelected() ? "Oui" : "Non"));
+//                bw.newLine();
+//                bw.write("Photo Identité    : " + (chkPhoto.isSelected() ? "Oui" : "Non"));
+//                bw.newLine();
+//                bw.write("Hébergement       : " + (chkHebergement.isSelected() ? "Oui" : "Non"));
+//                bw.newLine();
+//                bw.write("Billet Avion      : " + (chkBillet.isSelected() ? "Oui" : "Non"));
+//                bw.newLine();
+//                bw.write("Statut            : " + txtStatut1.getText());
+//                bw.newLine();
+//                bw.write("========================================");
+//                bw.newLine();
+//                bw.newLine();
+//
+//                bw.close();
+//                fw.close();
+//
+//            } catch (java.io.IOException e) {
+//                javax.swing.JOptionPane.showMessageDialog(this,
+//                    "Erreur lors de la sauvegarde : " + e.getMessage(),
+//                    "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+//            }
+//        }    
      
         // enregistrer le fichier de sauvegarde passeport    
-        private void sauvegarderPasseport() {
-            try {
-                String cheminFichier = "C:\\temp\\demandes_passeport.txt";
-                java.io.FileWriter fw = new java.io.FileWriter(cheminFichier, true);
-                java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
-
-                bw.write("========================================");
-                bw.newLine();
-                bw.write("Type de Document  : " + cmbTypeDocument.getSelectedItem());
-                bw.newLine();
-                bw.write("--- Informations Personnelles ---");
-                bw.newLine();
-                bw.write("Nom               : " + txtNomPasseport.getText());
-                bw.newLine();
-                bw.write("Prénom            : " + txtPrenomPasseport.getText());
-                bw.newLine();
-                bw.write("Date de Naissance : " + cmbJourNaissP.getSelectedItem() + "/" 
-                                                + cmbMoisNaissP.getSelectedItem() + "/" 
-                                                + cmbAnneeNaissP.getSelectedItem());
-                bw.newLine();
-                bw.write("Adresse           : " + txtAdresseP.getText());
-                bw.newLine();
-                bw.write("Ville             : " + txtVilleP.getText());
-                bw.newLine();
-                bw.write("Téléphone         : " + txtTelP.getText());
-                bw.newLine();
-                bw.write("Email             : " + txtEmailP.getText());
-                bw.newLine();
-                bw.write("--- Informations Document ---");
-                bw.newLine();
-                bw.write("Motif             : " + cmbMotifP.getSelectedItem());
-                bw.newLine();
-                bw.write("Ancien N° Doc     : " + txtAncienDoc.getText());
-                bw.newLine();
-                bw.write("--- Acte de Naissance ---");
-                bw.newLine();
-                bw.write("Nom&Prénom Père   : " + txtNomPere.getText());
-                bw.newLine();
-                bw.write("Nom&Prénom Mère   : " + txtNomMere.getText());
-                bw.newLine();
-                bw.write("Nombre de Copies  : " + cmbNbCopiesNaiss.getSelectedItem());
-                bw.newLine();
-                bw.write("--- Acte de Mariage ---");
-                bw.newLine();
-                bw.write("Nom&Prénom Époux  : " + txtNomEpoux.getText());
-                bw.newLine();
-                bw.write("Nom&Prénom Épouse : " + txtPrenomEpoux.getText());
-                bw.newLine();
-                bw.write("Date Mariage      : " + cmbJourMariage.getSelectedItem() + "/" 
-                                                + cmbMoisMariage.getSelectedItem() + "/" 
-                                                + cmbAnneeMariage.getSelectedItem());
-                bw.newLine();
-                bw.write("Lieu Mariage      : " + txtLieuMariage.getText());
-                bw.newLine();
-                bw.write("Nombre de Copies  : " + cmbNbCopiesMariage.getSelectedItem());
-                bw.newLine();
-                bw.write("Statut            : En attente");
-                bw.newLine();
-                bw.write("========================================");
-                bw.newLine();
-                bw.newLine();
-
-                bw.close();
-                fw.close();
-
-            } catch (java.io.IOException e) {
-                javax.swing.JOptionPane.showMessageDialog(this,
-                    "Erreur lors de la sauvegarde : " + e.getMessage(),
-                    "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
-        } 
+//        private void sauvegarderPasseport() {
+//            try {
+//                String cheminFichier = "C:\\temp\\demandes_passeport.txt";
+//                java.io.FileWriter fw = new java.io.FileWriter(cheminFichier, true);
+//                java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
+//
+//                bw.write("========================================");
+//                bw.newLine();
+//                bw.write("Type de Document  : " + cmbTypeDocument.getSelectedItem());
+//                bw.newLine();
+//                bw.write("--- Informations Personnelles ---");
+//                bw.newLine();
+//                bw.write("Nom               : " + txtNomPasseport.getText());
+//                bw.newLine();
+//                bw.write("Prénom            : " + txtPrenomPasseport.getText());
+//                bw.newLine();
+//                bw.write("Date de Naissance : " + cmbJourNaissP.getSelectedItem() + "/" 
+//                                                + cmbMoisNaissP.getSelectedItem() + "/" 
+//                                                + cmbAnneeNaissP.getSelectedItem());
+//                bw.newLine();
+//                bw.write("Adresse           : " + txtAdresseP.getText());
+//                bw.newLine();
+//                bw.write("Ville             : " + txtVilleP.getText());
+//                bw.newLine();
+//                bw.write("Téléphone         : " + txtTelP.getText());
+//                bw.newLine();
+//                bw.write("Email             : " + txtEmailP.getText());
+//                bw.newLine();
+//                bw.write("--- Informations Document ---");
+//                bw.newLine();
+//                bw.write("Motif             : " + cmbMotifP.getSelectedItem());
+//                bw.newLine();
+//                bw.write("Ancien N° Doc     : " + txtAncienDoc.getText());
+//                bw.newLine();
+//                bw.write("--- Acte de Naissance ---");
+//                bw.newLine();
+//                bw.write("Nom&Prénom Père   : " + txtNomPere.getText());
+//                bw.newLine();
+//                bw.write("Nom&Prénom Mère   : " + txtNomMere.getText());
+//                bw.newLine();
+//                bw.write("Nombre de Copies  : " + cmbNbCopiesNaiss.getSelectedItem());
+//                bw.newLine();
+//                bw.write("--- Acte de Mariage ---");
+//                bw.newLine();
+//                bw.write("Nom&Prénom Époux  : " + txtNomEpoux.getText());
+//                bw.newLine();
+//                bw.write("Nom&Prénom Épouse : " + txtPrenomEpoux.getText());
+//                bw.newLine();
+//                bw.write("Date Mariage      : " + cmbJourMariage.getSelectedItem() + "/" 
+//                                                + cmbMoisMariage.getSelectedItem() + "/" 
+//                                                + cmbAnneeMariage.getSelectedItem());
+//                bw.newLine();
+//                bw.write("Lieu Mariage      : " + txtLieuMariage.getText());
+//                bw.newLine();
+//                bw.write("Nombre de Copies  : " + cmbNbCopiesMariage.getSelectedItem());
+//                bw.newLine();
+//                bw.write("Statut            : En attente");
+//                bw.newLine();
+//                bw.write("========================================");
+//                bw.newLine();
+//                bw.newLine();
+//
+//                bw.close();
+//                fw.close();
+//
+//            } catch (java.io.IOException e) {
+//                javax.swing.JOptionPane.showMessageDialog(this,
+//                    "Erreur lors de la sauvegarde : " + e.getMessage(),
+//                    "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+//            }
+//        } 
     
         // enregistrer l'impression avec option
         private void afficherOptionsImpression(String contenu, String titre) {
@@ -621,6 +622,11 @@ public class MenuView extends javax.swing.JFrame {
         btnTableauBord = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         panelTableauBord = new java.awt.Panel();
+        jLabel73 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel74 = new javax.swing.JLabel();
+        tableauBord = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
         java.awt.Panel panelVisa = new java.awt.Panel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -1008,15 +1014,58 @@ public class MenuView extends javax.swing.JFrame {
 
         panelTableauBord.setBackground(new java.awt.Color(204, 204, 204));
 
+        jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel73.setText("Services Consulaires");
+
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator7.setDoubleBuffered(true);
+
+        jLabel74.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel74.setText("MON TABLEAU DE BORD");
+
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tableauBord.setViewportView(jTable);
+
         javax.swing.GroupLayout panelTableauBordLayout = new javax.swing.GroupLayout(panelTableauBord);
         panelTableauBord.setLayout(panelTableauBordLayout);
         panelTableauBordLayout.setHorizontalGroup(
             panelTableauBordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
+            .addGroup(panelTableauBordLayout.createSequentialGroup()
+                .addGroup(panelTableauBordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelTableauBordLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator7))
+                    .addGroup(panelTableauBordLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(panelTableauBordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(tableauBord, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelTableauBordLayout.setVerticalGroup(
             panelTableauBordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTableauBordLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel73)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel74)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tableauBord, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
 
         jPanel2.add(panelTableauBord, "card5");
@@ -1139,24 +1188,21 @@ public class MenuView extends javax.swing.JFrame {
             panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelVisaLayout.createSequentialGroup()
                 .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtStatut1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelVisaLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisaLayout.createSequentialGroup()
                                 .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelVisaLayout.createSequentialGroup()
                                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtNom1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelVisaLayout.createSequentialGroup()
-                                        .addComponent(jLabel15)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbJourNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbMoisNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbAnneeNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelVisaLayout.createSequentialGroup()
                                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1168,8 +1214,18 @@ public class MenuView extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cmbMoisDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbAnneeDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                        .addComponent(cmbAnneeDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cmbTypeVisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panelVisaLayout.createSequentialGroup()
+                                            .addComponent(jLabel15)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cmbJourNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cmbMoisNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cmbAnneeNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                                 .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(panelVisaLayout.createSequentialGroup()
@@ -1201,22 +1257,8 @@ public class MenuView extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtPrenom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisaLayout.createSequentialGroup()
-                                .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelVisaLayout.createSequentialGroup()
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbTypeVisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panelVisaLayout.createSequentialGroup()
-                                        .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(chkBillet)
-                                            .addComponent(chkPasseport))
-                                        .addGap(135, 135, 135)
-                                        .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(chkPhoto)
-                                            .addComponent(chkHebergement))))
-                                .addGap(328, 328, 328))
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE))
                             .addGroup(panelVisaLayout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1225,13 +1267,23 @@ public class MenuView extends javax.swing.JFrame {
                                 .addComponent(btnSeSoumettre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAnnuler)
-                                .addGap(8, 8, 8))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisaLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtStatut1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(8, 8, 8))
+                            .addGroup(panelVisaLayout.createSequentialGroup()
+                                .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelVisaLayout.createSequentialGroup()
+                                        .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(chkBillet)
+                                            .addComponent(chkPasseport))
+                                        .addGap(135, 135, 135)
+                                        .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(chkPhoto)
+                                            .addComponent(chkHebergement)))
+                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(panelVisaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)))
                 .addContainerGap())
         );
         panelVisaLayout.setVerticalGroup(
@@ -1243,11 +1295,11 @@ public class MenuView extends javax.swing.JFrame {
                     .addComponent(btnAnnuler, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSeSoumettre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnImprimerVisa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelVisaLayout.createSequentialGroup()
                         .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1307,11 +1359,11 @@ public class MenuView extends javax.swing.JFrame {
                 .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkPasseport)
                     .addComponent(chkPhoto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtStatut1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel2.add(panelVisa, "panelVisa");
@@ -2324,9 +2376,34 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnTableauBordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableauBordActionPerformed
         // TODO add your handling code here:
-        cardLayout.show(jPanel2, "card5");
-        jPanel2.revalidate();
-        jPanel2.repaint();
+       javax.swing.table.DefaultTableModel model = FichierManager.lireTousFichiers();
+    jTable.setModel(model);
+    jTable.setRowHeight(25);
+    jTable.getTableHeader().setFont(
+        new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 13));
+    jTable.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
+    jTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+    
+    // Colorier la colonne Statut
+    jTable.getColumnModel().getColumn(4).setCellRenderer(
+        new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public java.awt.Component getTableCellRendererComponent(
+                javax.swing.JTable table, Object value, boolean isSelected,
+                boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(
+                    table, value, isSelected, hasFocus, row, column);
+                if ("Confirmé".equals(value)) {
+                    setForeground(new java.awt.Color(0, 153, 0));
+                } else if ("En attente".equals(value)) {
+                    setForeground(new java.awt.Color(255, 102, 0));
+                } else {
+                    setForeground(java.awt.Color.BLACK);
+                }
+                return this;
+            }
+        }
+        );
     }//GEN-LAST:event_btnTableauBordActionPerformed
 
     private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
@@ -2455,7 +2532,7 @@ public class MenuView extends javax.swing.JFrame {
         txtStatut1.setForeground(new java.awt.Color(255, 102, 0));
     
         // sauvegarder dans txt
-        sauvegarderVisa();
+        FichierManager.sauvegarderVisa(demande);
 
         // Message succés
         javax.swing.JOptionPane.showMessageDialog(this,
@@ -2587,7 +2664,7 @@ public class MenuView extends javax.swing.JFrame {
 
         
         // Sauvegarder dans le fichier TXT
-        sauvegarderPasseport();
+        FichierManager.sauvegarderPasseport(demande);
 
     
         // Message de succès
@@ -2802,6 +2879,20 @@ public class MenuView extends javax.swing.JFrame {
     // Mettre à jour le statut
     txtStatutRDV.setText("Confirmé");
     txtStatutRDV.setForeground(new java.awt.Color(0, 153, 0));
+    
+    // Créer l'objet RendezVous et sauvegarder  ← AJOUTEZ ICI
+    RendezVous rdv = new RendezVous();
+    rdv.setNom(nom);
+    rdv.setPrenom(prenom);
+    rdv.setTelephone(tel);
+    rdv.setEmail(email);
+    rdv.setTypeService(typeService);
+    rdv.setDate(jour + " " + mois + " " + annee);
+    rdv.setCreneau(creneau);
+    rdv.soumettre();
+    FichierManager.sauvegarderRDV(rdv);  // ← AJOUTEZ ICI
+    
+    
     
     // Message de confirmation
     javax.swing.JOptionPane.showMessageDialog(this,
@@ -3042,6 +3133,8 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -3057,6 +3150,8 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JTable jTable;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
@@ -3065,6 +3160,7 @@ public class MenuView extends javax.swing.JFrame {
     private java.awt.Panel panelProfil;
     private java.awt.Panel panelRendezVous;
     private java.awt.Panel panelTableauBord;
+    private javax.swing.JScrollPane tableauBord;
     private javax.swing.JTextField txtAdresse1;
     private javax.swing.JTextField txtAdresseP;
     private javax.swing.JTextField txtAdresseProfil;
