@@ -59,7 +59,11 @@ public class RegistreUtilisateur {
     public void sauvegarderUtilisateurs() {
         try (PrintWriter pw = new PrintWriter(new FileWriter(FICHIER))) {
             for (Utilisateur u : registre) {
-                pw.println(u.getNom() + "," + u.getPrenom() + "," + u.getEmail() + "," + u.getMotDePasse());
+                pw.println(u.getNom() + "," + u.getPrenom() + "," + 
+                       u.getEmail() + "," + u.getMotDePasse() + "," +
+                       u.getTelephone() + "," + u.getAdresse() + "," +
+                       u.getVille() + "," + u.getCodePostal() + "," +
+                       u.getPays() + "," + u.getCheminPhoto());
             }
         } catch (IOException e) {
             System.out.println("Erreur sauvegarde : " + e.getMessage());
@@ -72,8 +76,17 @@ public class RegistreUtilisateur {
             String ligne;
             while ((ligne = br.readLine()) != null) {
                 String[] data = ligne.split(",");
-                if (data.length == 4) {
-                    registre.add(new Utilisateur(data[0], data[1], data[2], data[3]));
+                if (data.length >= 4) {
+                    Utilisateur u = new Utilisateur(data[0], data[1], data[2], data[3]);
+                    if (data.length == 10) {
+                        u.setTelephone(data[4]);
+                        u.setAdresse(data[5]);
+                        u.setVille(data[6]);
+                        u.setCodePostal(data[7]);
+                        u.setPays(data[8]);
+                        u.setCheminPhoto(data[9]);
+                    }
+                    registre.add(u);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -83,6 +96,16 @@ public class RegistreUtilisateur {
         }
     }
     
+ // Mettre à jour un utilisateur existant
+public void mettreAJourUtilisateur(Utilisateur uModifie) {
+    for (int i = 0; i < registre.size(); i++) {
+        if (registre.get(i).getEmail().equals(uModifie.getEmail())) {
+            registre.set(i, uModifie);
+            break;
+        }
+    }
+    sauvegarderUtilisateurs(); // sauvegarder après modification
+}
     // ToString
     @Override
     public String toString() {
