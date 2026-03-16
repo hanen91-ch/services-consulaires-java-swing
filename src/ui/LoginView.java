@@ -95,7 +95,6 @@ public class LoginView extends javax.swing.JFrame {
         jSeparator2.setDoubleBuffered(true);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo_consulat_cercle.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

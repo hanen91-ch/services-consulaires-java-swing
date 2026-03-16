@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import modele.DemandePasseport;
 import modele.DemandeVisa;
 import modele.RegistreUtilisateur;
+import modele.RendezVous;
 import modele.Utilisateur;
 
 /**
@@ -46,7 +47,11 @@ public class MenuView extends javax.swing.JFrame {
         // ajouter les ActionListeners
         btnSeSoumettre.addActionListener(this::btnSoumettreActionPerformed);
         btnAnnuler.addActionListener(this::btnAnnulerActionPerformed);
-    
+        btnConfirmerRDV.addActionListener(this::btnConfirmerRDVActionPerformed);
+        btnAnnulerRDV.addActionListener(this::btnAnnulerRDVActionPerformed);
+        
+        btnImprimerRDV.addActionListener(this::btnImprimerRDVActionPerformed);
+        
         jLabel46.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel46.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,7 +166,7 @@ public class MenuView extends javax.swing.JFrame {
             txtStatut1.setText("");
     }
    
-        // méthode pour remplir ComboBox
+        // méthode pour remplir ComboBox // demande visa
         private void remplirComboBox() {
             // Jours
             for (int i = 1; i <= 31; i++) {
@@ -263,7 +268,87 @@ public class MenuView extends javax.swing.JFrame {
             for (int i = 1950; i <= 2026; i++) {
                 cmbAnneeMariage.addItem(String.valueOf(i));
             }
+            
+            // remplir combo service // panel rendez-vous
+            // Type de Service - Rendez-vous
+            cmbTypeService.addItem("-- Sélectionner --");
+            cmbTypeService.addItem("Demande de Visa");
+            cmbTypeService.addItem("Passeport Biométrique");
+            cmbTypeService.addItem("Carte Nationale d'Identité (CNI)");
+            cmbTypeService.addItem("Légalisation de Documents");
+            cmbTypeService.addItem("État Civil");
+            cmbTypeService.addItem("Renouvellement Passeport");
+
+            // Jours RDV
+            for (int i = 1; i <= 31; i++) {
+                cmbJourRDV.addItem(String.format("%02d", i));
+            }
+
+            // Mois RDV
+            String[] moisRDV = {"Janvier","Février","Mars","Avril",
+                                "Mai","Juin","Juillet","Août",
+                                "Septembre","Octobre","Novembre","Décembre"};
+            for (String m : moisRDV) {
+                cmbMoisRDV.addItem(m);
+            }
+
+            // Années RDV
+            for (int i = 2025; i <= 2030; i++) {
+                cmbAnneeRDV.addItem(String.valueOf(i));
+            }
+            
         }
+        
+        // enregistrer le fichier de sauvegarde visa
+        private void sauvegarderRDV() {
+        try {
+            java.io.File dossier = new java.io.File("C:\\temp");
+            if (!dossier.exists()) {
+                dossier.mkdirs();
+            }
+
+            String cheminFichier = "C:\\temp\\demandes_rdv.txt";
+            java.io.FileWriter fw = new java.io.FileWriter(cheminFichier, true);
+            java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
+
+            bw.write("========================================");
+            bw.newLine();
+            bw.write("Type de Service   : " + cmbTypeService.getSelectedItem());
+            bw.newLine();
+            bw.write("--- Informations Personnelles ---");
+            bw.newLine();
+            bw.write("Nom               : " + txtNomRDV.getText());
+            bw.newLine();
+            bw.write("Prénom            : " + txtPrenomRDV.getText());
+            bw.newLine();
+            bw.write("Téléphone         : " + txtTelRDV.getText());
+            bw.newLine();
+            bw.write("Email             : " + txtEmailRDV.getText());
+            bw.newLine();
+            bw.write("--- Détails Rendez-vous ---");
+            bw.newLine();
+            bw.write("Date              : " + cmbJourRDV.getSelectedItem() + " "
+                                           + cmbMoisRDV.getSelectedItem() + " "
+                                           + cmbAnneeRDV.getSelectedItem());
+            bw.newLine();
+            bw.write("Créneau           : " + txtStatutRDV.getText().replace("Confirmé", "").trim());
+            bw.newLine();
+            bw.write("Statut            : Confirmé");
+            bw.newLine();
+            bw.write("========================================");
+            bw.newLine();
+            bw.newLine();
+
+            bw.close();
+            fw.close();
+
+        } catch (java.io.IOException e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Erreur lors de la sauvegarde : " + e.getMessage(),
+                "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        
         
         // enregistrer le fichier de sauvegarde visa
         private void sauvegarderVisa() {
@@ -532,7 +617,6 @@ public class MenuView extends javax.swing.JFrame {
         btnVisa = new javax.swing.JButton();
         btnPasseport = new javax.swing.JButton();
         btnRendezVous = new javax.swing.JButton();
-        btnDocuments = new javax.swing.JButton();
         btnProfil = new javax.swing.JButton();
         btnTableauBord = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -634,7 +718,6 @@ public class MenuView extends javax.swing.JFrame {
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
         txtStatut = new java.awt.Label();
-        panelRendezVous = new java.awt.Panel();
         panelDocuments = new java.awt.Panel();
         panelProfil = new java.awt.Panel();
         jPanel3 = new javax.swing.JPanel();
@@ -668,6 +751,45 @@ public class MenuView extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         btnAnnulerProfil = new javax.swing.JButton();
         btnMAJProfil = new javax.swing.JButton();
+        panelRendezVous = new java.awt.Panel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel64 = new javax.swing.JLabel();
+        cmbTypeService = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        txtNomRDV = new javax.swing.JTextField();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        txtPrenomRDV = new javax.swing.JTextField();
+        txtTelRDV = new javax.swing.JTextField();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        txtEmailRDV = new javax.swing.JTextField();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        cmbJourRDV = new javax.swing.JComboBox<>();
+        cmbMoisRDV = new javax.swing.JComboBox<>();
+        cmbAnneeRDV = new javax.swing.JComboBox<>();
+        jPanel6 = new javax.swing.JPanel();
+        btnH0900 = new javax.swing.JToggleButton();
+        btnH0930 = new javax.swing.JToggleButton();
+        btnH1000 = new javax.swing.JToggleButton();
+        btnH1030 = new javax.swing.JToggleButton();
+        btnH1100 = new javax.swing.JToggleButton();
+        btnH1130 = new javax.swing.JToggleButton();
+        btnH1400 = new javax.swing.JToggleButton();
+        btnH1430 = new javax.swing.JToggleButton();
+        btnH1500 = new javax.swing.JToggleButton();
+        btnH1530 = new javax.swing.JToggleButton();
+        btnH1600 = new javax.swing.JToggleButton();
+        btnH1630 = new javax.swing.JToggleButton();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        txtStatutRDV = new javax.swing.JLabel();
+        btnAnnulerRDV = new javax.swing.JButton();
+        btnConfirmerRDV = new javax.swing.JButton();
+        btnImprimerRDV = new javax.swing.JButton();
         btnSeDeconnecte = new javax.swing.JButton();
         jLabel47 = new javax.swing.JLabel();
         txtNomUser = new javax.swing.JLabel();
@@ -839,12 +961,6 @@ public class MenuView extends javax.swing.JFrame {
         btnRendezVous.setText("Rendez-vous");
         btnRendezVous.addActionListener(this::btnRendezVousActionPerformed);
 
-        btnDocuments.setBackground(new java.awt.Color(0, 153, 204));
-        btnDocuments.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnDocuments.setForeground(new java.awt.Color(255, 255, 255));
-        btnDocuments.setText("Envoi Documents");
-        btnDocuments.addActionListener(this::btnDocumentsActionPerformed);
-
         btnProfil.setBackground(new java.awt.Color(0, 153, 204));
         btnProfil.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnProfil.setForeground(new java.awt.Color(255, 255, 255));
@@ -867,7 +983,6 @@ public class MenuView extends javax.swing.JFrame {
                     .addComponent(btnVisa, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                     .addComponent(btnPasseport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRendezVous, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDocuments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnProfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTableauBord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(62, Short.MAX_VALUE))
@@ -877,15 +992,13 @@ public class MenuView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(btnTableauBord, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                .addGap(69, 69, 69)
+                .addGap(103, 103, 103)
                 .addComponent(btnVisa, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPasseport, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRendezVous, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnDocuments, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                .addGap(73, 73, 73)
+                .addGap(111, 111, 111)
                 .addComponent(btnProfil, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                 .addGap(41, 41, 41))
         );
@@ -899,7 +1012,7 @@ public class MenuView extends javax.swing.JFrame {
         panelTableauBord.setLayout(panelTableauBordLayout);
         panelTableauBordLayout.setHorizontalGroup(
             panelTableauBordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 752, Short.MAX_VALUE)
+            .addGap(0, 806, Short.MAX_VALUE)
         );
         panelTableauBordLayout.setVerticalGroup(
             panelTableauBordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1003,17 +1116,20 @@ public class MenuView extends javax.swing.JFrame {
 
         txtStatut1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        btnAnnuler.setBackground(new java.awt.Color(255, 153, 0));
+        btnAnnuler.setBackground(new java.awt.Color(0, 102, 153));
         btnAnnuler.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAnnuler.setForeground(new java.awt.Color(255, 255, 255));
         btnAnnuler.setText("Annuler");
 
-        btnSeSoumettre.setBackground(new java.awt.Color(102, 204, 0));
+        btnSeSoumettre.setBackground(new java.awt.Color(0, 102, 153));
         btnSeSoumettre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSeSoumettre.setForeground(new java.awt.Color(255, 255, 255));
         btnSeSoumettre.setText("Soumettre");
         btnSeSoumettre.addActionListener(this::btnSeSoumettreActionPerformed);
 
-        btnImprimerVisa.setBackground(new java.awt.Color(0, 153, 153));
+        btnImprimerVisa.setBackground(new java.awt.Color(0, 102, 153));
         btnImprimerVisa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnImprimerVisa.setForeground(new java.awt.Color(255, 255, 255));
         btnImprimerVisa.setText("Imprimer");
         btnImprimerVisa.addActionListener(this::btnImprimerVisaActionPerformed);
 
@@ -1053,7 +1169,7 @@ public class MenuView extends javax.swing.JFrame {
                                         .addComponent(cmbMoisDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cmbAnneeDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                                 .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(panelVisaLayout.createSequentialGroup()
@@ -1084,32 +1200,32 @@ public class MenuView extends javax.swing.JFrame {
                                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtPrenom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(panelVisaLayout.createSequentialGroup()
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnImprimerVisa)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnSeSoumettre)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnAnnuler))
-                                .addGroup(panelVisaLayout.createSequentialGroup()
-                                    .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(panelVisaLayout.createSequentialGroup()
-                                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(cmbTypeVisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(panelVisaLayout.createSequentialGroup()
-                                            .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(chkBillet)
-                                                .addComponent(chkPasseport))
-                                            .addGap(135, 135, 135)
-                                            .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(chkPhoto)
-                                                .addComponent(chkHebergement))))
-                                    .addGap(328, 328, 328)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisaLayout.createSequentialGroup()
+                                .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelVisaLayout.createSequentialGroup()
+                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cmbTypeVisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelVisaLayout.createSequentialGroup()
+                                        .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(chkBillet)
+                                            .addComponent(chkPasseport))
+                                        .addGap(135, 135, 135)
+                                        .addGroup(panelVisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(chkPhoto)
+                                            .addComponent(chkHebergement))))
+                                .addGap(328, 328, 328))
+                            .addGroup(panelVisaLayout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnImprimerVisa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSeSoumettre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAnnuler)
+                                .addGap(8, 8, 8))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisaLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1329,18 +1445,21 @@ public class MenuView extends javax.swing.JFrame {
 
         jLabel45.setText("Nombre de Copies :");
 
-        btnAnnulerP.setBackground(new java.awt.Color(255, 102, 0));
+        btnAnnulerP.setBackground(new java.awt.Color(0, 102, 153));
         btnAnnulerP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAnnulerP.setForeground(new java.awt.Color(255, 255, 255));
         btnAnnulerP.setText("Annuler");
         btnAnnulerP.addActionListener(this::btnAnnulerPActionPerformed);
 
-        btnSoumettreP.setBackground(new java.awt.Color(0, 204, 0));
+        btnSoumettreP.setBackground(new java.awt.Color(0, 102, 153));
         btnSoumettreP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSoumettreP.setForeground(new java.awt.Color(255, 255, 255));
         btnSoumettreP.setText("Soumettre");
         btnSoumettreP.addActionListener(this::btnSoumettrePActionPerformed);
 
-        btnImptimerP.setBackground(new java.awt.Color(0, 153, 153));
+        btnImptimerP.setBackground(new java.awt.Color(0, 102, 153));
         btnImptimerP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnImptimerP.setForeground(new java.awt.Color(255, 255, 255));
         btnImptimerP.setText("Imprimer");
         btnImptimerP.addActionListener(this::btnImptimerPActionPerformed);
 
@@ -1360,124 +1479,126 @@ public class MenuView extends javax.swing.JFrame {
             .addGroup(panelPasseportLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPasseportLayout.createSequentialGroup()
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnImptimerP)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnSoumettreP)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnAnnulerP))
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                            .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panelPasseportLayout.createSequentialGroup()
-                                    .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addGap(11, 11, 11)
-                                            .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtNomP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(panelPasseportLayout.createSequentialGroup()
-                                                    .addComponent(cmbJourNaissP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(cmbMoisNaissP, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(cmbAnneeNaissP, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPasseportLayout.createSequentialGroup()
-                                                    .addComponent(txtNomPasseport, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(10, 10, 10))))
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addGap(10, 10, 10)
-                                            .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(51, 51, 51)
-                                            .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(panelPasseportLayout.createSequentialGroup()
-                                                    .addComponent(txtTelP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGap(32, 32, 32)
-                                                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(txtAdresseP, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addGap(15, 15, 15)
-                                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtVilleP, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtEmailP, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(panelPasseportLayout.createSequentialGroup()
-                                                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(txtPrenomPasseport, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panelPasseportLayout.createSequentialGroup()
-                                    .addComponent(txtTypeDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cmbTypeDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panelPasseportLayout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(cmbMotifP, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(31, 31, 31)
-                                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtAncienDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtNomPere, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtNomMere, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addComponent(jLabel40)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(cmbNbCopiesNaiss, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(cmbJourMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(cmbMoisMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(cmbAnneeMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(5, 5, 5)
-                                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtLieuMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtNomEpoux, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtPrenomEpoux, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panelPasseportLayout.createSequentialGroup()
-                                            .addComponent(jLabel45)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(cmbNbCopiesMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtStatut, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGap(8, 8, 8))))
-                .addContainerGap(9, Short.MAX_VALUE))
+                    .addComponent(jSeparator4)
+                    .addGroup(panelPasseportLayout.createSequentialGroup()
+                        .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelPasseportLayout.createSequentialGroup()
+                                        .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addGap(11, 11, 11)
+                                                .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtNomP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                        .addComponent(cmbJourNaissP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(cmbMoisNaissP, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(cmbAnneeNaissP, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPasseportLayout.createSequentialGroup()
+                                                        .addComponent(txtNomPasseport, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(10, 10, 10))))
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(51, 51, 51)
+                                                .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                        .addComponent(txtTelP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGap(32, 32, 32)
+                                                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(txtAdresseP, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addGap(15, 15, 15)
+                                                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtVilleP, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtEmailP, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtPrenomPasseport, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelPasseportLayout.createSequentialGroup()
+                                        .addComponent(txtTypeDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cmbTypeDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelPasseportLayout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addGroup(panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cmbMotifP, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(31, 31, 31)
+                                                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtAncienDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtNomPere, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtNomMere, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addComponent(jLabel40)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cmbNbCopiesNaiss, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cmbJourMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cmbMoisMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cmbAnneeMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(5, 5, 5)
+                                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtLieuMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtNomEpoux, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtPrenomEpoux, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panelPasseportLayout.createSequentialGroup()
+                                                .addComponent(jLabel45)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cmbNbCopiesMariage, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtStatut, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(8, 8, 8)))
+                        .addGap(0, 57, Short.MAX_VALUE))
+                    .addGroup(panelPasseportLayout.createSequentialGroup()
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnImptimerP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSoumettreP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAnnulerP)))
+                .addContainerGap())
         );
         panelPasseportLayout.setVerticalGroup(
             panelPasseportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1581,28 +1702,13 @@ public class MenuView extends javax.swing.JFrame {
 
         jPanel2.add(panelPasseport, "card3");
 
-        panelRendezVous.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout panelRendezVousLayout = new javax.swing.GroupLayout(panelRendezVous);
-        panelRendezVous.setLayout(panelRendezVousLayout);
-        panelRendezVousLayout.setHorizontalGroup(
-            panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 752, Short.MAX_VALUE)
-        );
-        panelRendezVousLayout.setVerticalGroup(
-            panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(panelRendezVous, "card4");
-
         panelDocuments.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout panelDocumentsLayout = new javax.swing.GroupLayout(panelDocuments);
         panelDocuments.setLayout(panelDocumentsLayout);
         panelDocumentsLayout.setHorizontalGroup(
             panelDocumentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 752, Short.MAX_VALUE)
+            .addGap(0, 806, Short.MAX_VALUE)
         );
         panelDocumentsLayout.setVerticalGroup(
             panelDocumentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1714,7 +1820,7 @@ public class MenuView extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                     .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1739,7 +1845,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addComponent(txtPrenomProfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                         .addComponent(txtNomProfil, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(txtEmailProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1786,13 +1892,15 @@ public class MenuView extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator5.setDoubleBuffered(true);
 
-        btnAnnulerProfil.setBackground(new java.awt.Color(255, 102, 0));
+        btnAnnulerProfil.setBackground(new java.awt.Color(0, 102, 153));
         btnAnnulerProfil.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAnnulerProfil.setForeground(new java.awt.Color(255, 255, 255));
         btnAnnulerProfil.setText("Annuler");
         btnAnnulerProfil.addActionListener(this::btnAnnulerProfilActionPerformed);
 
-        btnMAJProfil.setBackground(new java.awt.Color(102, 102, 102));
+        btnMAJProfil.setBackground(new java.awt.Color(0, 102, 153));
         btnMAJProfil.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMAJProfil.setForeground(new java.awt.Color(255, 255, 255));
         btnMAJProfil.setText("Mettre a jour");
         btnMAJProfil.addActionListener(this::btnMAJProfilActionPerformed);
 
@@ -1839,6 +1947,292 @@ public class MenuView extends javax.swing.JFrame {
         );
 
         jPanel2.add(panelProfil, "card7");
+
+        panelRendezVous.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel62.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel62.setText("Services Consulaires");
+
+        jLabel63.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel63.setText("DEMANDE RENDEZ-VOUS");
+
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator6.setDoubleBuffered(true);
+
+        jLabel64.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel64.setText("Type de Service :");
+        jLabel64.setPreferredSize(new java.awt.Dimension(115, 25));
+
+        cmbTypeService.setPreferredSize(new java.awt.Dimension(72, 25));
+        cmbTypeService.addActionListener(this::cmbTypeServiceActionPerformed);
+
+        txtNomRDV.setPreferredSize(new java.awt.Dimension(73, 25));
+
+        jLabel65.setText("Nom :");
+
+        jLabel66.setText("Prénom :");
+
+        txtPrenomRDV.setPreferredSize(new java.awt.Dimension(73, 25));
+
+        txtTelRDV.setPreferredSize(new java.awt.Dimension(73, 25));
+
+        jLabel67.setText("Téléphone : ");
+        jLabel67.setPreferredSize(new java.awt.Dimension(65, 25));
+
+        jLabel68.setText("Email : ");
+        jLabel68.setPreferredSize(new java.awt.Dimension(38, 25));
+
+        txtEmailRDV.setPreferredSize(new java.awt.Dimension(73, 25));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNomRDV, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTelRDV, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrenomRDV, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(179, 179, 179))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEmailRDV, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel65)
+                    .addComponent(txtNomRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel66)
+                    .addComponent(txtPrenomRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEmailRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel69.setText("Informations Personnelles :");
+
+        jLabel70.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel70.setText("Choisir une Date :");
+        jLabel70.setPreferredSize(new java.awt.Dimension(93, 25));
+        jLabel70.setRequestFocusEnabled(false);
+
+        btnH0900.setText("09:00");
+
+        btnH0930.setText("09:30");
+
+        btnH1000.setText("10:00");
+
+        btnH1030.setText("10:30");
+
+        btnH1100.setText("11:00");
+
+        btnH1130.setText("11:30");
+
+        btnH1400.setText("14:00");
+
+        btnH1430.setText("14:30");
+
+        btnH1500.setText("15:00");
+
+        btnH1530.setText("15:30");
+
+        btnH1600.setText("16:00");
+
+        btnH1630.setText("16:30");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnH0900, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnH0930, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnH1000, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnH1130, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnH1100, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnH1030, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnH1430, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnH1400, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnH1500, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnH1600, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnH1530, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnH1630, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnH0900)
+                    .addComponent(btnH1030)
+                    .addComponent(btnH1400)
+                    .addComponent(btnH1530))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnH0930)
+                    .addComponent(btnH1100)
+                    .addComponent(btnH1430)
+                    .addComponent(btnH1600))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnH1000)
+                    .addComponent(btnH1130)
+                    .addComponent(btnH1500)
+                    .addComponent(btnH1630))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        jLabel71.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel71.setText("Créneaux disponibles :");
+
+        jLabel72.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel72.setText("Statut :");
+
+        txtStatutRDV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtStatutRDV.setPreferredSize(new java.awt.Dimension(45, 25));
+
+        btnAnnulerRDV.setBackground(new java.awt.Color(0, 102, 153));
+        btnAnnulerRDV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAnnulerRDV.setForeground(new java.awt.Color(255, 255, 255));
+        btnAnnulerRDV.setText("Annuler");
+        btnAnnulerRDV.addActionListener(this::btnAnnulerRDVActionPerformed);
+
+        btnConfirmerRDV.setBackground(new java.awt.Color(0, 102, 153));
+        btnConfirmerRDV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnConfirmerRDV.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfirmerRDV.setText("Confirmer le rendez-vous");
+        btnConfirmerRDV.addActionListener(this::btnConfirmerRDVActionPerformed);
+
+        btnImprimerRDV.setBackground(new java.awt.Color(0, 102, 153));
+        btnImprimerRDV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnImprimerRDV.setForeground(new java.awt.Color(255, 255, 255));
+        btnImprimerRDV.setText("Imprimer");
+        btnImprimerRDV.setOpaque(true);
+        btnImprimerRDV.setPreferredSize(new java.awt.Dimension(88, 36));
+        btnImprimerRDV.addActionListener(this::btnImprimerRDVActionPerformed);
+
+        javax.swing.GroupLayout panelRendezVousLayout = new javax.swing.GroupLayout(panelRendezVous);
+        panelRendezVous.setLayout(panelRendezVousLayout);
+        panelRendezVousLayout.setHorizontalGroup(
+            panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRendezVousLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtStatutRDV, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+            .addGroup(panelRendezVousLayout.createSequentialGroup()
+                .addGroup(panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRendezVousLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelRendezVousLayout.createSequentialGroup()
+                                .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbTypeService, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelRendezVousLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbJourRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbMoisRDV, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbAnneeRDV, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRendezVousLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelRendezVousLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelRendezVousLayout.createSequentialGroup()
+                                    .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnImprimerRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnConfirmerRDV)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnAnnulerRDV)))
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelRendezVousLayout.setVerticalGroup(
+            panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRendezVousLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel62)
+                    .addComponent(btnAnnulerRDV, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfirmerRDV, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnImprimerRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel63)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTypeService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbJourRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbMoisRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAnneeRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addComponent(jLabel71)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRendezVousLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel72)
+                    .addComponent(txtStatutRDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(panelRendezVous, "card4");
 
         btnSeDeconnecte.setBackground(new java.awt.Color(0, 102, 153));
         btnSeDeconnecte.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1920,6 +2314,12 @@ public class MenuView extends javax.swing.JFrame {
         jPanel2.revalidate();
         jPanel2.repaint();
         
+        // Remplir automatiquement depuis le profil
+        txtNomRDV.setText(utilisateurConnecte.getNom());
+        txtPrenomRDV.setText(utilisateurConnecte.getPrenom());
+        txtTelRDV.setText(utilisateurConnecte.getTelephone());
+        txtEmailRDV.setText(utilisateurConnecte.getEmail());
+        
     }//GEN-LAST:event_btnRendezVousActionPerformed
 
     private void btnTableauBordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableauBordActionPerformed
@@ -1928,13 +2328,6 @@ public class MenuView extends javax.swing.JFrame {
         jPanel2.revalidate();
         jPanel2.repaint();
     }//GEN-LAST:event_btnTableauBordActionPerformed
-
-    private void btnDocumentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocumentsActionPerformed
-        // TODO add your handling code here:
-        cardLayout.show(jPanel2, "card6");
-        jPanel2.revalidate();
-        jPanel2.repaint();
-    }//GEN-LAST:event_btnDocumentsActionPerformed
 
     private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
         // TODO add your handling code here:
@@ -2350,6 +2743,149 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAdresseProfilActionPerformed
 
+    private void cmbTypeServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTypeServiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTypeServiceActionPerformed
+
+    private void btnConfirmerRDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmerRDVActionPerformed
+        
+    // Récupérer les valeurs
+    String nom = txtNomRDV.getText();
+    String prenom = txtPrenomRDV.getText();
+    String tel = txtTelRDV.getText();
+    String email = txtEmailRDV.getText();
+    String typeService = (String) cmbTypeService.getSelectedItem();
+    String jour = (String) cmbJourRDV.getSelectedItem();
+    String mois = (String) cmbMoisRDV.getSelectedItem();
+    String annee = (String) cmbAnneeRDV.getSelectedItem();
+    
+    // Trouver le créneau sélectionné
+    String creneau = "";
+    javax.swing.JToggleButton[] boutons = {
+        btnH0900, btnH0930, btnH1000, btnH1030,
+        btnH1100, btnH1130, btnH1400, btnH1430,
+        btnH1500, btnH1530, btnH1600, btnH1630
+    };
+    for (javax.swing.JToggleButton btn : boutons) {
+        if (btn.isSelected()) {
+            creneau = btn.getText();
+            break;
+        }
+    }
+    
+    // Validation des champs obligatoires
+    if (nom.isEmpty() || prenom.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Veuillez remplir le Nom et le Prénom.",
+            "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if ("-- Sélectionner --".equals(typeService) || typeService == null) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Veuillez sélectionner un Type de Service.",
+            "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (jour == null || mois == null || annee == null) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Veuillez choisir une date.",
+            "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (creneau.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Veuillez sélectionner un créneau horaire.",
+            "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    // Mettre à jour le statut
+    txtStatutRDV.setText("Confirmé");
+    txtStatutRDV.setForeground(new java.awt.Color(0, 153, 0));
+    
+    // Message de confirmation
+    javax.swing.JOptionPane.showMessageDialog(this,
+        "Rendez-vous confirmé !\n\n" +
+        "Nom       : " + nom + " " + prenom + "\n" +
+        "Service   : " + typeService + "\n" +
+        "Date      : " + jour + " " + mois + " " + annee + "\n" +
+        "Heure     : " + creneau,
+        "Confirmation", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnConfirmerRDVActionPerformed
+
+    private void btnAnnulerRDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulerRDVActionPerformed
+        // TODO add your handling code here:
+        txtNomRDV.setText("");
+        txtPrenomRDV.setText("");
+        txtTelRDV.setText("");
+        txtEmailRDV.setText("");
+    
+    cmbTypeService.setSelectedIndex(0);
+    cmbJourRDV.setSelectedIndex(0);
+    cmbMoisRDV.setSelectedIndex(0);
+    cmbAnneeRDV.setSelectedIndex(0);
+    
+    javax.swing.JToggleButton[] boutons = {
+        btnH0900, btnH0930, btnH1000, btnH1030,
+        btnH1100, btnH1130, btnH1400, btnH1430,
+        btnH1500, btnH1530, btnH1600, btnH1630
+    };
+    for (javax.swing.JToggleButton btn : boutons) {
+        btn.setSelected(false);
+    }
+    
+    txtStatutRDV.setText("");
+    }//GEN-LAST:event_btnAnnulerRDVActionPerformed
+
+    private void btnImprimerRDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimerRDVActionPerformed
+        // TODO add your handling code here:
+        // Vérifier que les champs obligatoires sont remplis
+    if (txtNomRDV.getText().isEmpty() || txtPrenomRDV.getText().isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Veuillez remplir les informations avant d'imprimer.",
+            "Erreur", javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Vérifier qu'un créneau est sélectionné
+    String creneau = "";
+    javax.swing.JToggleButton[] boutons = {
+        btnH0900, btnH0930, btnH1000, btnH1030,
+        btnH1100, btnH1130, btnH1400, btnH1430,
+        btnH1500, btnH1530, btnH1600, btnH1630
+    };
+    for (javax.swing.JToggleButton btn : boutons) {
+        if (btn.isSelected()) {
+            creneau = btn.getText();
+            break;
+        }
+    }
+    
+    if (creneau.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Veuillez sélectionner un créneau horaire.",
+            "Erreur", javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Créer l'objet RendezVous
+    RendezVous rdv = new RendezVous();
+    rdv.setNom(txtNomRDV.getText());
+    rdv.setPrenom(txtPrenomRDV.getText());
+    rdv.setTelephone(txtTelRDV.getText());
+    rdv.setEmail(txtEmailRDV.getText());
+    rdv.setTypeService((String) cmbTypeService.getSelectedItem());
+    rdv.setDate(cmbJourRDV.getSelectedItem() + " "
+              + cmbMoisRDV.getSelectedItem() + " "
+              + cmbAnneeRDV.getSelectedItem());
+    rdv.setCreneau(creneau);
+    rdv.soumettre();
+    
+    // Utiliser la méthode genererAccuseReception()
+    String contenu = rdv.genererAccuseReception();
+    afficherOptionsImpression(contenu, "Accusé de Réception Rendez-vous");
+    }//GEN-LAST:event_btnImprimerRDVActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2379,8 +2915,22 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JButton btnAnnuler;
     private javax.swing.JButton btnAnnulerP;
     private javax.swing.JButton btnAnnulerProfil;
-    private javax.swing.JButton btnDocuments;
+    private javax.swing.JButton btnAnnulerRDV;
+    private javax.swing.JButton btnConfirmerRDV;
     private javax.swing.JButton btnEnregistrer;
+    private javax.swing.JToggleButton btnH0900;
+    private javax.swing.JToggleButton btnH0930;
+    private javax.swing.JToggleButton btnH1000;
+    private javax.swing.JToggleButton btnH1030;
+    private javax.swing.JToggleButton btnH1100;
+    private javax.swing.JToggleButton btnH1130;
+    private javax.swing.JToggleButton btnH1400;
+    private javax.swing.JToggleButton btnH1430;
+    private javax.swing.JToggleButton btnH1500;
+    private javax.swing.JToggleButton btnH1530;
+    private javax.swing.JToggleButton btnH1600;
+    private javax.swing.JToggleButton btnH1630;
+    private javax.swing.JButton btnImprimerRDV;
     private javax.swing.JButton btnImprimerVisa;
     private javax.swing.JButton btnImptimerP;
     private javax.swing.JButton btnMAJProfil;
@@ -2401,21 +2951,25 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbAnneeMariage;
     private javax.swing.JComboBox<String> cmbAnneeNaissP;
     private javax.swing.JComboBox<String> cmbAnneeNaissance;
+    private javax.swing.JComboBox<String> cmbAnneeRDV;
     private javax.swing.JComboBox<String> cmbJourDebut;
     private javax.swing.JComboBox<String> cmbJourFin;
     private javax.swing.JComboBox<String> cmbJourMariage;
     private javax.swing.JComboBox<String> cmbJourNaissP;
     private javax.swing.JComboBox<String> cmbJourNaissance;
+    private javax.swing.JComboBox<String> cmbJourRDV;
     private javax.swing.JComboBox<String> cmbMoisDebut;
     private javax.swing.JComboBox<String> cmbMoisFin;
     private javax.swing.JComboBox<String> cmbMoisMariage;
     private javax.swing.JComboBox<String> cmbMoisNaissP;
     private javax.swing.JComboBox<String> cmbMoisNaissance;
+    private javax.swing.JComboBox<String> cmbMoisRDV;
     private javax.swing.JComboBox<String> cmbMotifP;
     private javax.swing.JComboBox<String> cmbNationnalite1;
     private javax.swing.JComboBox<String> cmbNbCopiesMariage;
     private javax.swing.JComboBox<String> cmbNbCopiesNaiss;
     private javax.swing.JComboBox<String> cmbTypeDocument;
+    private javax.swing.JComboBox<String> cmbTypeService;
     private javax.swing.JComboBox<String> cmbTypeVisa1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
@@ -2476,19 +3030,33 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
@@ -2508,6 +3076,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEmailP;
     private javax.swing.JTextField txtEmailProfil;
+    private javax.swing.JTextField txtEmailRDV;
     private javax.swing.JTextField txtLieuMariage;
     private javax.swing.JPasswordField txtMotDePasse;
     private javax.swing.JTextArea txtMotif;
@@ -2519,6 +3088,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTextField txtNomPasseport;
     private javax.swing.JTextField txtNomPere;
     private javax.swing.JTextField txtNomProfil;
+    private javax.swing.JTextField txtNomRDV;
     private javax.swing.JLabel txtNomUser;
     private javax.swing.JTextField txtPasseport1;
     private javax.swing.JTextField txtPaysProfil;
@@ -2527,10 +3097,13 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrenomEpoux;
     private javax.swing.JTextField txtPrenomPasseport;
     private javax.swing.JTextField txtPrenomProfil;
+    private javax.swing.JTextField txtPrenomRDV;
     private javax.swing.JLabel txtSeConnecter;
     private java.awt.Label txtStatut;
     private javax.swing.JLabel txtStatut1;
+    private javax.swing.JLabel txtStatutRDV;
     private javax.swing.JTextField txtTelP;
+    private javax.swing.JTextField txtTelRDV;
     private javax.swing.JTextField txtTelephoneProfil;
     private javax.swing.JTextField txtTotalDossier;
     private javax.swing.JLabel txtTypeDoc;
