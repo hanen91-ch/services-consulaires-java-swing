@@ -50,8 +50,8 @@ public class MenuView extends javax.swing.JFrame {
         btnAnnuler.addActionListener(this::btnAnnulerActionPerformed);
         btnConfirmerRDV.addActionListener(this::btnConfirmerRDVActionPerformed);
         btnAnnulerRDV.addActionListener(this::btnAnnulerRDVActionPerformed);
-        
         btnImprimerRDV.addActionListener(this::btnImprimerRDVActionPerformed);
+        btnImprimerTableau.addActionListener(this::btnImprimerTableauActionPerformed);
         
         jLabel46.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel46.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -61,6 +61,7 @@ public class MenuView extends javax.swing.JFrame {
 });
     
         remplirProfil();
+        chargerTableauBord();
     }
         
         private void remplirProfil() {
@@ -79,6 +80,44 @@ public class MenuView extends javax.swing.JFrame {
                     afficherPhoto(utilisateurConnecte.getCheminPhoto());
             }
         }
+        
+        // charger le table de bord
+        private void chargerTableauBord() {
+            javax.swing.table.DefaultTableModel model = FichierManager.lireTousFichiers();
+            jTable.setModel(model);
+            jTable.setRowHeight(25);
+            jTable.getTableHeader().setFont(
+                new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 13));
+            jTable.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
+            jTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+
+            if (jTable.getColumnCount() > 4) {
+                jTable.getColumnModel().getColumn(4).setCellRenderer(
+                    new javax.swing.table.DefaultTableCellRenderer() {
+                        @Override
+                        public java.awt.Component getTableCellRendererComponent(
+                            javax.swing.JTable table, Object value, boolean isSelected,
+                            boolean hasFocus, int row, int column) {
+                            super.getTableCellRendererComponent(
+                                table, value, isSelected, hasFocus, row, column);
+                            if ("Confirmé".equals(value)) {
+                                setForeground(new java.awt.Color(0, 153, 0));
+                            } else if ("En attente".equals(value)) {
+                                setForeground(new java.awt.Color(255, 102, 0));
+                            } else {
+                                setForeground(java.awt.Color.BLACK);
+                            }
+                            return this;
+                        }
+                    }
+                );
+            }
+            jTable.revalidate();
+            jTable.repaint();
+        }
+        
+        
+        
         
         
         
@@ -627,6 +666,7 @@ public class MenuView extends javax.swing.JFrame {
         jLabel74 = new javax.swing.JLabel();
         tableauBord = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
+        btnImprimerTableau = new javax.swing.JButton();
         java.awt.Panel panelVisa = new java.awt.Panel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -1036,6 +1076,13 @@ public class MenuView extends javax.swing.JFrame {
         ));
         tableauBord.setViewportView(jTable);
 
+        btnImprimerTableau.setBackground(new java.awt.Color(0, 102, 153));
+        btnImprimerTableau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnImprimerTableau.setForeground(new java.awt.Color(255, 255, 255));
+        btnImprimerTableau.setText("Imprimer");
+        btnImprimerTableau.setPreferredSize(new java.awt.Dimension(88, 36));
+        btnImprimerTableau.addActionListener(this::btnImprimerTableauActionPerformed);
+
         javax.swing.GroupLayout panelTableauBordLayout = new javax.swing.GroupLayout(panelTableauBord);
         panelTableauBord.setLayout(panelTableauBordLayout);
         panelTableauBordLayout.setHorizontalGroup(
@@ -1048,24 +1095,30 @@ public class MenuView extends javax.swing.JFrame {
                     .addGroup(panelTableauBordLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(panelTableauBordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(tableauBord, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
+                            .addGroup(panelTableauBordLayout.createSequentialGroup()
+                                .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelTableauBordLayout.createSequentialGroup()
+                                .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
+                                .addComponent(btnImprimerTableau, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(tableauBord, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         panelTableauBordLayout.setVerticalGroup(
             panelTableauBordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTableauBordLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel73)
+                .addGroup(panelTableauBordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel73)
+                    .addComponent(btnImprimerTableau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel74)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 7, Short.MAX_VALUE)
+                .addComponent(jSeparator7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tableauBord, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addComponent(tableauBord, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel2.add(panelTableauBord, "card5");
@@ -2376,34 +2429,11 @@ public class MenuView extends javax.swing.JFrame {
 
     private void btnTableauBordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableauBordActionPerformed
         // TODO add your handling code here:
-       javax.swing.table.DefaultTableModel model = FichierManager.lireTousFichiers();
-    jTable.setModel(model);
-    jTable.setRowHeight(25);
-    jTable.getTableHeader().setFont(
-        new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 13));
-    jTable.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
-    jTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-    
-    // Colorier la colonne Statut
-    jTable.getColumnModel().getColumn(4).setCellRenderer(
-        new javax.swing.table.DefaultTableCellRenderer() {
-            @Override
-            public java.awt.Component getTableCellRendererComponent(
-                javax.swing.JTable table, Object value, boolean isSelected,
-                boolean hasFocus, int row, int column) {
-                super.getTableCellRendererComponent(
-                    table, value, isSelected, hasFocus, row, column);
-                if ("Confirmé".equals(value)) {
-                    setForeground(new java.awt.Color(0, 153, 0));
-                } else if ("En attente".equals(value)) {
-                    setForeground(new java.awt.Color(255, 102, 0));
-                } else {
-                    setForeground(java.awt.Color.BLACK);
-                }
-                return this;
-            }
-        }
-        );
+        // Afficher le panel tableau de bord
+        cardLayout.show(jPanel2, "card5");
+        jPanel2.revalidate();
+        jPanel2.repaint();
+        chargerTableauBord();
     }//GEN-LAST:event_btnTableauBordActionPerformed
 
     private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
@@ -2678,8 +2708,8 @@ public class MenuView extends javax.swing.JFrame {
     private void btnImptimerPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImptimerPActionPerformed
    
         // Vérifier que les champs obligatoires sont remplis
-        if (txtNomPasseport.getText().trim().isEmpty() || 
-            txtPrenomPasseport.getText().trim().isEmpty()) {
+        if (txtNomPasseport.getText().isEmpty() || 
+            txtPrenomPasseport.getText().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this,
                 "Veuillez remplir les informations avant d'imprimer.",
                 "Erreur", javax.swing.JOptionPane.WARNING_MESSAGE);
@@ -2977,6 +3007,89 @@ public class MenuView extends javax.swing.JFrame {
     afficherOptionsImpression(contenu, "Accusé de Réception Rendez-vous");
     }//GEN-LAST:event_btnImprimerRDVActionPerformed
 
+    private void btnImprimerTableauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimerTableauActionPerformed
+        // TODO add your handling code here:
+    
+    // Vérifier que le tableau a des données
+    if (jTable.getRowCount() == 0) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Le tableau est vide, rien à imprimer.",
+            "Erreur", javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    // Construire le contenu
+    StringBuilder contenu = new StringBuilder();
+    contenu.append("========================================\n");
+    contenu.append("    TABLEAU DE BORD - RÉCAPITULATIF\n");
+    contenu.append("========================================\n");
+    contenu.append(String.format("%-15s %-15s %-15s %-20s %-15s%n",
+        "Type", "Nom", "Prénom", "Détails", "Statut"));
+    contenu.append("----------------------------------------\n");
+    
+    for (int i = 0; i < jTable.getRowCount(); i++) {
+        String type    = jTable.getValueAt(i, 0) != null ? jTable.getValueAt(i, 0).toString() : "";
+        String nom     = jTable.getValueAt(i, 1) != null ? jTable.getValueAt(i, 1).toString() : "";
+        String prenom  = jTable.getValueAt(i, 2) != null ? jTable.getValueAt(i, 2).toString() : "";
+        String details = jTable.getValueAt(i, 3) != null ? jTable.getValueAt(i, 3).toString() : "";
+        String statut  = jTable.getValueAt(i, 4) != null ? jTable.getValueAt(i, 4).toString() : "";
+        contenu.append(String.format("%-15s %-15s %-15s %-20s %-15s%n",
+            type, nom, prenom, details, statut));
+    }
+    contenu.append("========================================\n");
+    contenu.append("Total : " + jTable.getRowCount() + " demande(s)\n");
+    contenu.append("========================================\n");
+    
+    // Afficher aperçu
+    javax.swing.JTextArea textArea = new javax.swing.JTextArea(contenu.toString());
+    textArea.setFont(new java.awt.Font("Courier New", java.awt.Font.PLAIN, 12));
+    textArea.setEditable(false);
+    textArea.setMargin(new java.awt.Insets(10, 10, 10, 10));
+    
+    javax.swing.JScrollPane scrollPane = new javax.swing.JScrollPane(textArea);
+    scrollPane.setPreferredSize(new java.awt.Dimension(600, 400));
+    
+    // Boutons options
+    Object[] options = {"Imprimer", "Sauvegarder en TXT", "Annuler"};
+    
+    int choix = javax.swing.JOptionPane.showOptionDialog(
+        this, scrollPane,
+        "Aperçu - Tableau de Bord",
+        javax.swing.JOptionPane.DEFAULT_OPTION,
+        javax.swing.JOptionPane.PLAIN_MESSAGE,
+        null, options, options[0]);
+    
+    if (choix == 0) {
+        // Imprimer
+        try {
+            textArea.print();
+        } catch (java.awt.print.PrinterException e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Erreur impression : " + e.getMessage(),
+                "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        
+    } else if (choix == 1) {
+        // Sauvegarder en TXT
+        javax.swing.JFileChooser fc = new javax.swing.JFileChooser("C:\\temp");
+        fc.setSelectedFile(new java.io.File("tableau_bord.txt"));
+        fc.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("TXT", "txt"));
+        if (fc.showSaveDialog(this) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            try (java.io.FileWriter fw = new java.io.FileWriter(fc.getSelectedFile())) {
+                fw.write(contenu.toString());
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Fichier TXT sauvegardé avec succès !",
+                    "Succès", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } catch (java.io.IOException e) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Erreur sauvegarde : " + e.getMessage(),
+                    "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+        
+    }//GEN-LAST:event_btnImprimerTableauActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3022,6 +3135,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnH1600;
     private javax.swing.JToggleButton btnH1630;
     private javax.swing.JButton btnImprimerRDV;
+    private javax.swing.JButton btnImprimerTableau;
     private javax.swing.JButton btnImprimerVisa;
     private javax.swing.JButton btnImptimerP;
     private javax.swing.JButton btnMAJProfil;
