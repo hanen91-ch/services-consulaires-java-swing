@@ -71,7 +71,7 @@ public class Utilisateur {
     // ToString
     @Override
     public String toString() {
-        return "Utilisateur{" + "nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", motDePasse=" + motDePasse + '}';
+        return "Utilisateur{" + "nom=" + nom + ", prenom=" + prenom + ", email=" + email + '}';
     }
    
 }

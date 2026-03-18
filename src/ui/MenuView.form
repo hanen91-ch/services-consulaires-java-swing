@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JFrame" name="jFrame1">
       <Properties>
@@ -1271,141 +1271,136 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel24" alignment="0" min="-2" pref="367" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
+                                  <Component id="jLabel27" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel27" min="-2" pref="199" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel29" min="-2" pref="110" max="-2" attributes="0"/>
+                                                  <Component id="txtNomP" min="-2" pref="43" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel29" min="-2" pref="110" max="-2" attributes="0"/>
-                                                          <Component id="txtNomP" min="-2" pref="43" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="cmbJourNaissP" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="cmbMoisNaissP" min="-2" pref="78" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="cmbAnneeNaissP" min="-2" pref="84" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="102" alignment="1" attributes="0">
-                                                              <Component id="txtNomPasseport" min="-2" pref="236" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
+                                                      <Component id="cmbJourNaissP" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="cmbMoisNaissP" min="-2" pref="78" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="cmbAnneeNaissP" min="-2" pref="84" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="txtNomPasseport" min="-2" pref="236" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel34" min="-2" pref="72" max="-2" attributes="0"/>
-                                                          <Component id="jLabel31" min="-2" pref="72" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="txtTelP" max="32767" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                                              <Component id="jLabel35" min="-2" pref="43" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Component id="txtAdresseP" min="-2" pref="246" max="-2" attributes="0"/>
-                                                      </Group>
                                                   </Group>
                                               </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                                      <Component id="jLabel32" min="-2" pref="43" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtVilleP" min="-2" pref="226" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="txtEmailP" min="-2" pref="293" max="-2" attributes="0"/>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="jLabel28" min="-2" pref="70" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="txtPrenomPasseport" min="-2" pref="268" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                  </Group>
+                                                  <Component id="jLabel34" min="-2" pref="72" max="-2" attributes="0"/>
+                                                  <Component id="jLabel31" min="-2" pref="72" max="-2" attributes="0"/>
                                               </Group>
-                                          </Group>
-                                          <Component id="jLabel26" min="-2" pref="199" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="txtTypeDoc" min="-2" pref="150" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="cmbTypeDocument" min="-2" pref="223" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="jLabel41" min="-2" pref="199" max="-2" attributes="0"/>
-                                          <Component id="jLabel38" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel36" min="-2" pref="43" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="cmbMotifP" min="-2" pref="216" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                                      <Component id="jLabel37" min="-2" pref="125" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtAncienDoc" min="-2" pref="239" max="-2" attributes="0"/>
+                                                      <Component id="txtTelP" max="32767" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                                      <Component id="jLabel35" min="-2" pref="43" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Component id="txtAdresseP" min="-2" pref="246" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                              <Component id="jLabel32" min="-2" pref="43" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtVilleP" min="-2" pref="226" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="txtEmailP" min="-2" pref="293" max="-2" attributes="0"/>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel33" min="-2" pref="121" max="-2" attributes="0"/>
+                                                      <Component id="jLabel28" min="-2" pref="70" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtNomPere" min="-2" pref="214" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtNomMere" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="cmbNbCopiesNaiss" min="-2" pref="145" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel44" min="-2" pref="110" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="cmbJourMariage" min="-2" pref="66" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="cmbMoisMariage" min="-2" pref="78" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="cmbAnneeMariage" min="-2" pref="84" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                                      <Component id="jLabel30" min="-2" pref="114" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtLieuMariage" min="-2" pref="224" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel42" min="-2" pref="121" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtNomEpoux" min="-2" pref="208" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jLabel43" min="-2" pref="129" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtPrenomEpoux" min="-2" pref="241" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="cmbNbCopiesMariage" min="-2" pref="141" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
-                                                      <Component id="label2" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="txtStatut" min="-2" pref="126" max="-2" attributes="0"/>
+                                                      <Component id="txtPrenomPasseport" min="-2" pref="268" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel26" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtTypeDoc" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cmbTypeDocument" min="-2" pref="223" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel41" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Component id="jLabel38" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel36" min="-2" pref="43" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="cmbMotifP" min="-2" pref="216" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                              <Component id="jLabel37" min="-2" pref="125" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtAncienDoc" min="-2" pref="239" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel33" min="-2" pref="121" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtNomPere" min="-2" pref="214" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtNomMere" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="cmbNbCopiesNaiss" min="-2" pref="145" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel44" min="-2" pref="110" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="cmbJourMariage" min="-2" pref="66" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="cmbMoisMariage" min="-2" pref="78" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="cmbAnneeMariage" min="-2" pref="84" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                              <Component id="jLabel30" min="-2" pref="114" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtLieuMariage" min="-2" pref="224" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel42" min="-2" pref="121" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtNomEpoux" min="-2" pref="208" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel43" min="-2" pref="129" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtPrenomEpoux" min="-2" pref="241" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="cmbNbCopiesMariage" min="-2" pref="141" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="label2" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtStatut" min="-2" pref="126" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="57" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel25" min="-2" pref="353" max="-2" attributes="0"/>
@@ -2223,17 +2218,11 @@
                       <Dimension value="[100, 100]"/>
                     </Property>
                   </Properties>
-                  <AccessibilityProperties>
-                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
-                  </AccessibilityProperties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel48">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Dossiers : "/>
                   </Properties>
-                  <AccessibilityProperties>
-                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Dossiers : "/>
-                  </AccessibilityProperties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel59">
                   <Properties>
@@ -2296,10 +2285,8 @@
                               </Group>
                               <Component id="txtAdresseProfil" alignment="1" max="32767" attributes="0"/>
                               <Component id="txtTelephoneProfil" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtPrenomProfil" alignment="0" pref="226" max="32767" attributes="0"/>
-                                  <Component id="txtNomProfil" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txtPrenomProfil" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtNomProfil" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtEmailProfil" alignment="0" min="-2" pref="278" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="47" max="32767" attributes="0"/>
@@ -2707,12 +2694,14 @@
                               <Component id="txtPrenomRDV" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel67" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTelRDV" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="jLabel68" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtEmailRDV" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel67" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTelRDV" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="21" max="32767" attributes="0"/>

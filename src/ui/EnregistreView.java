@@ -224,6 +224,14 @@ public class EnregistreView extends javax.swing.JFrame {
                 javax.swing.JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            // format de l'email
+            if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Format d'email invalide.",
+                    "Erreur",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             // Vérifier si l'email existe déjà
             if (listing.emailExiste(email)) {
                 javax.swing.JOptionPane.showMessageDialog(this,

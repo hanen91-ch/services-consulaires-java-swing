@@ -24,7 +24,7 @@ public class FichierManager {
     private static final String FICHIER_PASSEPORT = "C:\\temp\\demandes_passeport.txt";
     private static final String FICHIER_RDV       = "C:\\temp\\demandes_rdv.txt";
     
-    // Créer le dossier C:\temp si inexistant
+    // Créer le dossier consulaire si inexistant
     private static void creerDossier() {
         java.io.File dossier = new java.io.File("C:\\temp");
         if (!dossier.exists()) {

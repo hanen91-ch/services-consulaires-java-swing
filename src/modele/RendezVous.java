@@ -17,6 +17,17 @@ public class RendezVous extends Demande implements Imprimable {
     // Constructeur vide
     public RendezVous() {}
     
+     // Constructeur paramétré
+
+    public RendezVous(String typeService, String date, String creneau, String nom, String prenom, String adresse, String telephone, String email, String dateNaissance) {
+        super(nom, prenom, adresse, telephone, email, dateNaissance);
+        this.typeService = typeService;
+        this.date = date;
+        this.creneau = creneau;
+    }
+    
+    
+    
     // Getters et Setters
     public String getTypeService() { return typeService; }
     public void setTypeService(String typeService) { this.typeService = typeService; }
