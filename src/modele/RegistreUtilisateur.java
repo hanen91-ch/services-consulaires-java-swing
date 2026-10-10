@@ -11,11 +11,12 @@ import java.util.ArrayList;
 public class RegistreUtilisateur {
     
     private ArrayList<Utilisateur> registre;
-    private static final String FICHIER = "C:/temp/utilisateurs.txt";
+    private static final String FICHIER = System.getProperty("user.home") + "/consulaire/utilisateurs.txt";
     
     // Constructeur
     public RegistreUtilisateur() {
         registre = new ArrayList<>();
+        new java.io.File(System.getProperty("user.home") + "/consulaire").mkdirs();
         chargerUtilisateurs(); // charge au démarrage
     }
     

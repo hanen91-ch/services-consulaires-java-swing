@@ -6,6 +6,7 @@ package ui;
 
 import modele.RegistreUtilisateur;
 import modele.Utilisateur;
+import utils.Validateur;
 
 /**
  *
@@ -63,25 +64,26 @@ public class EnregistreView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 36)); // NOI18N
         jLabel2.setText("Services Consulaires");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 18)); // NOI18N
         jLabel3.setText("INSCRIPTION AU PORTAIL");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 14)); // NOI18N
         jLabel4.setText("NOM * :");
 
         txtNom.setMinimumSize(new java.awt.Dimension(64, 25));
         txtNom.setPreferredSize(new java.awt.Dimension(73, 25));
         txtNom.addActionListener(this::txtNomActionPerformed);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 14)); // NOI18N
         jLabel5.setText("PRÉNOM * :");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 14)); // NOI18N
         jLabel6.setText("ADRESSE EMAIL * :");
 
+        jLabel7.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 14)); // NOI18N
         jLabel7.setText("MOT DE PASSE * :");
 
         txtPrenom.setPreferredSize(new java.awt.Dimension(73, 25));
@@ -91,7 +93,7 @@ public class EnregistreView extends javax.swing.JFrame {
         txtEmail.addActionListener(this::txtEmailActionPerformed);
 
         btnEnregistrer.setBackground(new java.awt.Color(204, 204, 0));
-        btnEnregistrer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEnregistrer.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 14)); // NOI18N
         btnEnregistrer.setText("S'INSCRIRE");
         btnEnregistrer.setPreferredSize(new java.awt.Dimension(116, 23));
         btnEnregistrer.addActionListener(this::btnEnregistrerActionPerformed);
@@ -100,10 +102,10 @@ public class EnregistreView extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("PMingLiU-ExtB", 3, 14)); // NOI18N
         jLabel9.setText("Vous avez déjà un compte ?");
 
-        txtSeConnecter.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtSeConnecter.setFont(new java.awt.Font("PMingLiU-ExtB", 3, 14)); // NOI18N
         txtSeConnecter.setForeground(new java.awt.Color(204, 204, 0));
         txtSeConnecter.setText("Se Connecter ...");
         txtSeConnecter.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,48 +122,54 @@ public class EnregistreView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(118, 118, 118))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnEnregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                                        .addComponent(txtMotDePasse))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(btnEnregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(txtSeConnecter, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMotDePasse)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSeConnecter, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(jLabel3)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -175,29 +183,27 @@ public class EnregistreView extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNom, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtMotDePasse, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                        .addGap(3, 3, 3)))
-                .addGap(32, 32, 32)
-                .addComponent(btnEnregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSeConnecter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMotDePasse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(btnEnregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSeConnecter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
@@ -217,13 +223,23 @@ public class EnregistreView extends javax.swing.JFrame {
             String motDePasse = new String(txtMotDePasse.getPassword());
 
             // Vérifier si les champs sont vides
-            if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || motDePasse.isEmpty()) {
+            if (Validateur.champVide(nom) || Validateur.champVide(prenom) || Validateur.champVide(email) || Validateur.champVide(motDePasse)) {
                 javax.swing.JOptionPane.showMessageDialog(this,
                 "Veuillez remplir tous les champs.",
                 "Erreur",
                 javax.swing.JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            
+            // Vérifier le format de l'email
+            if (!Validateur.emailValide(email)) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Veuillez entrer un email valide.",
+                        "Erreur",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
             // Vérifier si l'email existe déjà
             if (listing.emailExiste(email)) {
                 javax.swing.JOptionPane.showMessageDialog(this,
@@ -232,6 +248,7 @@ public class EnregistreView extends javax.swing.JFrame {
                 javax.swing.JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            
             // Créer et ajouter l'utilisateur
             Utilisateur u = new Utilisateur(nom, prenom, email, motDePasse);
             listing.ajouterUtilisateur(u);

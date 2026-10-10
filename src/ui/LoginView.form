@@ -59,53 +59,58 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel5" min="-2" pref="147" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel1" min="-2" pref="313" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="jSeparator2" alignment="1" min="-2" pref="389" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jSeparator1" alignment="0" min="-2" pref="389" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" pref="357" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" pref="314" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jSeparator2" alignment="0" min="-2" pref="389" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="jSeparator1" min="-2" pref="389" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtEmail" min="-2" pref="119" max="-2" attributes="0"/>
+                              <Component id="txtMDP" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
+                              <Component id="txtMotDePasse" alignment="0" min="-2" pref="311" max="-2" attributes="0"/>
+                              <Component id="txtAdresseEmail" alignment="0" min="-2" pref="311" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txtCompte" min="-2" pref="114" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                                  <Component id="btnConnecter" min="-2" pref="186" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="txtEmail" min="-2" pref="119" max="-2" attributes="0"/>
-                              <Component id="txtAdresseEmail" min="-2" pref="305" max="-2" attributes="0"/>
-                              <Component id="txtMDP" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
-                              <Component id="txtMotDePasse" alignment="0" min="-2" pref="305" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="btnConnecter" min="-2" pref="186" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jLabel5" min="-2" pref="147" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,25 +123,25 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtEmail" min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="jSeparator1" min="-2" pref="3" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="txtEmail" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtAdresseEmail" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtMDP" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="txtMDP" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtMotDePasse" min="-2" pref="37" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="txtMotDePasse" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="btnConnecter" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtCompte" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="txtCompte" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jSeparator2" min="-2" pref="3" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -148,7 +153,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Light" size="14" style="0"/>
+              <Font name="PMingLiU-ExtB" size="14" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Vous n&apos;avez pas de Compte ?"/>
           </Properties>
@@ -156,7 +161,7 @@
         <Component class="javax.swing.JLabel" name="txtCompte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Black" size="12" style="0"/>
+              <Font name="PMingLiU-ExtB" size="14" style="3"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="cc" red="cc" type="rgb"/>
@@ -170,7 +175,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="36" style="1"/>
+              <Font name="PMingLiU-ExtB" size="36" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Services Consulaires"/>
           </Properties>
@@ -183,7 +188,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
+              <Font name="PMingLiU-ExtB" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="PORTAIL D&apos;ACC&#xc9;S S&#xc9;CURIS&#xc9;"/>
           </Properties>
@@ -209,7 +214,7 @@
         <Component class="javax.swing.JLabel" name="txtEmail">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="0"/>
+              <Font name="PMingLiU-ExtB" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ADRESSE EMAIL"/>
           </Properties>
@@ -217,7 +222,7 @@
         <Component class="javax.swing.JLabel" name="txtMDP">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="0"/>
+              <Font name="PMingLiU-ExtB" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="MOT DE PASSE"/>
           </Properties>
@@ -228,7 +233,7 @@
               <Color blue="0" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
+              <Font name="PMingLiU-ExtB" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SE CONNECTER"/>
           </Properties>

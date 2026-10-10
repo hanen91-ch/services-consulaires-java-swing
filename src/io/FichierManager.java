@@ -20,13 +20,13 @@ import modele.RendezVous;
 public class FichierManager {
     
     // Chemins des fichiers
-    private static final String FICHIER_VISA      = "C:\\temp\\demandes_visa.txt";
-    private static final String FICHIER_PASSEPORT = "C:\\temp\\demandes_passeport.txt";
-    private static final String FICHIER_RDV       = "C:\\temp\\demandes_rdv.txt";
+    private static final String FICHIER_VISA      = System.getProperty("user.home") + "/consulaire/demandes_visa.txt";
+    private static final String FICHIER_PASSEPORT = System.getProperty("user.home") + "/consulaire/demandes_passeport.txt";
+    private static final String FICHIER_RDV       = System.getProperty("user.home") + "/consulaire/demandes_rdv.txt";
     
-    // Créer le dossier C:\temp si inexistant
+    // Créer le dossier consulaire si inexistant
     private static void creerDossier() {
-        java.io.File dossier = new java.io.File("C:\\temp");
+        java.io.File dossier = new java.io.File(System.getProperty("user.home") + "/consulaire");
         if (!dossier.exists()) {
             dossier.mkdirs();
         }
